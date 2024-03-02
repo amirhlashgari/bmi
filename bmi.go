@@ -1,18 +1,16 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
+
+	"github.com/amirhlashgari/bmi/variable"
 )
 
-var reader = bufio.NewReader(os.Stdin)
-
 func main() {
-	fmt.Println("BMI Calculator")
-	fmt.Println("--------------------")
+	fmt.Println(variable.MainTitle)
+	fmt.Println(variable.Separator)
 
 	fmt.Print("Please enter your weight(kg): ")
 	userWeight, _ := reader.ReadString('\n')
@@ -29,4 +27,6 @@ func main() {
 	bmi := weight / (height * height)
 
 	fmt.Printf("Your BMI: %.2f", bmi) // %.2f specifies that show only two decimal of float64
+	fmt.Println(variable.EmptyString)
+	fmt.Println(variable.Separator)
 }
