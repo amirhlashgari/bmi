@@ -15,6 +15,15 @@ type Product struct {
 	price       float64
 }
 
+func (prod *Product) store() {
+	file, _ := os.Create(prod.id + ".txt")
+
+	content := fmt.Sprintf("ID: %v\nTitle: %v\nDescription: %v\nPrice: USD %.2f\n", prod.id, prod.title, prod.description, prod.price)
+
+	file.WriteString(content)
+	file.Close()
+}
+
 func (prod *Product) printData() {
 	fmt.Printf("ID: %v\n", (*prod).id) // no need to destruct Product to use its attributes, (*prod).id === prod.id
 	fmt.Printf("Title: %v\n", prod.title)
@@ -30,6 +39,7 @@ func main() {
 	createdProduct := getProduct()
 
 	createdProduct.printData()
+	createdProduct.store()
 }
 
 func getProduct() *Product {
