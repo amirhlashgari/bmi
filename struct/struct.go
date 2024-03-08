@@ -1,6 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
 
 type Product struct {
 	id          string
@@ -16,14 +22,37 @@ func (prod *Product) printData() {
 	fmt.Printf("Price: USD %.2f\n\n", prod.price)
 }
 
-func newProduct(id string, name string, desc string, price float64) *Product {
+func NewProduct(id string, name string, desc string, price float64) *Product {
 	return &Product{id, name, desc, price}
 }
 
 func main() {
-	firstProduct := Product{"123456789", "A Book", "book's description", 6.99} // simple type of defining new product
-	secondProduct := newProduct("987654321", "A Carpet", "nice one", 65.90)    // define product using struct methods
+	createdProduct := getProduct()
 
-	firstProduct.printData()
-	secondProduct.printData()
+	createdProduct.printData()
+}
+
+func getProduct() *Product {
+	fmt.Println("Please enter the product data:")
+	fmt.Println("------------------------------")
+
+	reader := bufio.NewReader(os.Stdin) // returns pointer
+
+	inputId := readUserInput(reader, "Product ID: ")
+	inputTitle := readUserInput(reader, "Product Title: ")
+	inputDescription := readUserInput(reader, "Product Description: ")
+	inputPrice := readUserInput(reader, "Product Price: ")
+
+	floatedInputPrice, _ := strconv.ParseFloat(inputPrice, 64)
+
+	product := NewProduct(inputId, inputTitle, inputDescription, floatedInputPrice)
+	return product
+}
+
+func readUserInput(reader *bufio.Reader, promptText string) string {
+	fmt.Print(promptText)
+	userInput, _ := reader.ReadString('\n')
+	userInput = strings.Replace(userInput, "\n", "", -1)
+
+	return userInput
 }
