@@ -41,4 +41,17 @@ func main() {
 
 	courses = append(courses, newCourse)
 	fmt.Println(courses)
+
+	fmt.Println("------------------------------")
+
+	prices := []float64{19.34, 123.45, 87.99}
+	fmt.Println(prices)
+	prices[1] = 20.88
+
+	prices = append(prices, 18.22, 17.99, 18.01, 99.89)
+	fmt.Println(prices)
+
+	newPrices := []float64{1.34, 18.56, 20.99, 10.01}
+	prices = append(prices, newPrices...)
+	fmt.Println(prices)
 }
