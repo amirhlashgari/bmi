@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/amirhlashgari/monsterslayer/interaction"
 )
 
@@ -26,6 +28,11 @@ func executeRound() string {
 	isSpecialRound := currentRound%3 == 0 // special rounds have some special attacks, and it unlocks every 3 rounds
 
 	interaction.ShowAvailableActions(isSpecialRound)
+	userChoice := interaction.GetPlayerChoice(isSpecialRound)
+
+	fmt.Println(userChoice)
+
+	return ""
 }
 
 func endGame() {
