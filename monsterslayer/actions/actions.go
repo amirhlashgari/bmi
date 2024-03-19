@@ -19,7 +19,7 @@ func AttackMonster(isSpecialAttack bool) {
 		maxAttackValue = PLAYER_SPECIAL_ATTACK_MAX_DMG
 	}
 	damageValue := generateRandBetween(minAttackValue, maxAttackValue)
-	currentMonsterHealth = currentMonsterHealth - damageValue
+	currentMonsterHealth -= damageValue
 }
 
 func HealPlayer() {
@@ -41,14 +41,16 @@ func AttackPlayer() {
 	currentPlayerHealth -= damageValue
 }
 
+func GetHealthAmounts() (int, int) {
+	return currentPlayerHealth, currentMonsterHealth
+}
+
 func generateRandBetween(min int, max int) int {
-
 	/**
-	* we want a random number betwwen "min" & "max"
-	* but problem is Intn function takes only 1 parameter
-	* so we pass "max - min" to functions param
-	* and then subtract "min" from it to have the desired random number
+	 * we want a random number betwwen "min" & "max"
+	 * but problem is Intn function takes only 1 parameter
+	 * so we pass "max - min" to functions param
+	 * and then subtract "min" from it to have the desired random number
 	 */
-
 	return randGenerator.Intn(max-min) + min
 }
