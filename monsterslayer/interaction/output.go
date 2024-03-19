@@ -3,6 +3,7 @@ package interaction
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/common-nighthawk/go-figure" // to load third-party modules use --> "go mod tidy" | also can use "go get ..." to install package
 )
@@ -55,7 +56,15 @@ func DeclareWinner(winner string) {
 }
 
 func WriteLogFile(rounds *[]RoundData) {
-	file, err := os.Create("gamelog.txt")
+	exPath, err := os.Executable()
+	if err != nil {
+		fmt.Println("Writing log into a file failed. Exiting...")
+		return
+	}
+	exPath = filepath.Dir(exPath)
+
+	file, err := os.Create(exPath + "/gamelog.txt") // ---> for when using executable
+	// file, err := os.Create("gamelog.txt") ---> for when using "go run ."
 
 	if err != nil {
 		fmt.Println("Saving log file failed. Exiting...")

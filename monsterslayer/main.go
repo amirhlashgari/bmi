@@ -69,3 +69,10 @@ func endGame(winner string) {
 	interaction.DeclareWinner(winner)
 	interaction.WriteLogFile(&gameRounds)
 }
+
+/**
+ * NOTES:
+ * -----------
+ * to compile our Go code and convert it to an executable file ---> "go build"
+ * in above case there is no need that user have go installed on system and returns a .exe file to use
+ */
