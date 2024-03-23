@@ -5,7 +5,7 @@ import "fmt"
 type transformFn func(int) int // defining custom type for function type to pass in param
 type anotherFn func(int, []string, map[string][]int) ([]int, string)
 
-func main() {
+func firstclass() {
 	numbers := []int{1, 2, 3, 4, 5}
 	doubled := doubleNumbers(&numbers)            // REMINDER: we use pointers to avoid brand new copies of slice every time we use it
 	tripled := transformNumbers(&numbers, triple) // IMPORTANT: since functions are VALUES in golang we can pass it through another function as parameter
