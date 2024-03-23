@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func anonymous() {
 	numbers := []int{1, 2, 3, 4, 5}
 
 	// instead of defining double and triple function, we can pass it in params as an anonymos function.
