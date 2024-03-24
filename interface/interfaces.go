@@ -36,7 +36,7 @@ func (text loggableString) log() {
 	fmt.Println(text)
 }
 
-func main() {
+func interfaces() {
 	userLog := logData{"user logged in", "user-log.txt"}
 	// userLog.log()
 	// createLog(userLog) ---> although it has log() method but it won't work because not type "loggableString"
