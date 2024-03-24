@@ -9,6 +9,28 @@ import (
 var source = rand.NewSource(time.Now().Unix())
 var randN = rand.New(source)
 
+func selectStatement() {
+	x := make(chan int)
+	y := make(chan int)
+	limiter := make(chan int, 3)
+
+	go generateValue(x, limiter)
+	go generateValue(y, limiter)
+
+	var a int
+	var b int
+
+	// in case just one of our routines were important to finish
+	select {
+	case a = <-x:
+		fmt.Printf("X finished first, value is %v", a)
+	case b = <-y:
+		fmt.Printf("Y finished first, value is %v", b)
+	}
+
+	fmt.Println("sum")
+}
+
 func main() {
 	c := make(chan int)
 	limiter := make(chan int, 3) // three concurrent tasks in a while(to avoid over performing)
